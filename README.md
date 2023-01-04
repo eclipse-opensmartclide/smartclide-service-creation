@@ -32,3 +32,4 @@ The service includes two endpoints:
 				**jenkinsServerUrl** -> String    
 				**jenkinsUsername** -> String    
 				**jenkinsToken** -> String    
+
