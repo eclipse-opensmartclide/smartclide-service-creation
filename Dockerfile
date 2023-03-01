@@ -10,5 +10,5 @@
 
 FROM openjdk:18-jdk-alpine
 VOLUME /tmp
-ADD target/smartclide-service-creation-0.0.1-SNAPSHOT.jar app.jar
+ADD target/*.jar app.jar
 ENTRYPOINT ["java", "-jar", "/app.jar"]

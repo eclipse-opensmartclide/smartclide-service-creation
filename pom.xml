@@ -18,8 +18,8 @@
 		<version>2.7.5</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>smartclide-service-creation</artifactId>
+	<groupId>org.eclipse.opensmartclide</groupId>
+	<artifactId>servicecreation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>smartclide-service-creation</name>
 	<description>SmartCLIDE automated GitLab repo and Jenkins pipeline creation</description>
@@ -102,6 +102,19 @@
 		    <groupId>org.springdoc</groupId>
 		    <artifactId>springdoc-openapi-ui</artifactId>
 		    <version>1.6.13</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.eclipse.jgit/org.eclipse.jgit -->
+		<dependency>
+			<groupId>org.eclipse.jgit</groupId>
+			<artifactId>org.eclipse.jgit</artifactId>
+			<version>6.4.0.202211300538-r</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
 		</dependency>
 	</dependencies>
 

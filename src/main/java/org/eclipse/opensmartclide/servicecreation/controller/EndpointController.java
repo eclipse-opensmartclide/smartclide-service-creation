@@ -7,17 +7,19 @@
  * 
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
-package uom.smartclide.structurecreation.controller;
+package org.eclipse.opensmartclide.servicecreation.controller;
 
 
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.eclipse.opensmartclide.servicecreation.functionality.mainFlow.LicenseFlow;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
-import uom.smartclide.structurecreation.functionality.mainFlow.MainFlow;
-import uom.smartclide.structurecreation.functionality.utils.ResultObject;
+import org.eclipse.opensmartclide.servicecreation.functionality.mainFlow.MainFlow;
+import org.eclipse.opensmartclide.servicecreation.functionality.utils.ResultObject;
+
+import java.util.concurrent.TimeUnit;
 
 //@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -53,7 +55,7 @@ public class EndpointController {
 	@PostMapping("/createStructure")
 	public ResultObject createStructure(@RequestHeader String projectName, @RequestHeader String projVisibility,
 			@RequestHeader String projDescription, @RequestHeader String gitLabServerURL,
-			@RequestHeader String gitlabToken) {
+			@RequestHeader String gitlabToken, @RequestHeader(required = false) String license) {
 
 		if (isEmptyOrNull(projectName) || isEmptyOrNull(gitLabServerURL) || isEmptyOrNull(gitlabToken)
 				|| isEmptyOrNull(projVisibility) || isEmptyOrNull(projDescription)) {
@@ -64,11 +66,16 @@ public class EndpointController {
 		ResultObject ret = new ResultObject(1, "Creation Failed");
 		ret = MainFlow.createStructure(projectName, projVisibility, projDescription, gitLabServerURL, gitlabToken);
 
+		if(!isEmptyOrNull(license) && ret.getStatus()==0){
+			System.out.println("Project created");
+			LicenseFlow.addLicense(gitlabToken, ret.getMessage(), projectName, license);
+		}
+
 		return ret;
 
 	}
 
 	private boolean isEmptyOrNull(String str) {
-		return (str.isEmpty() || str == null);
+		return (str == null || str.isEmpty());
 	}
 }
