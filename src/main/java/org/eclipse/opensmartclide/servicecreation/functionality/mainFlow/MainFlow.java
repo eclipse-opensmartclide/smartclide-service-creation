@@ -7,7 +7,7 @@
  * 
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
-package uom.smartclide.structurecreation.functionality.mainFlow;
+package org.eclipse.opensmartclide.servicecreation.functionality.mainFlow;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -15,9 +15,9 @@ import java.net.URISyntaxException;
 import org.dom4j.DocumentException;
 import org.gitlab4j.api.GitLabApiException;
 
-import uom.smartclide.structurecreation.functionality.apis.GitLab;
-import uom.smartclide.structurecreation.functionality.apis.Jenkins;
-import uom.smartclide.structurecreation.functionality.utils.ResultObject;
+import org.eclipse.opensmartclide.servicecreation.functionality.apis.GitLab;
+import org.eclipse.opensmartclide.servicecreation.functionality.apis.Jenkins;
+import org.eclipse.opensmartclide.servicecreation.functionality.utils.ResultObject;
 
 public class MainFlow {
 		

@@ -7,17 +7,18 @@
  * 
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
-package uom.smartclide.structurecreation.functionality.apis;
-
-import java.util.Iterator;
-import java.util.List;
+package org.eclipse.opensmartclide.servicecreation.functionality.apis;
 
 import org.gitlab4j.api.GitLabApi;
 import org.gitlab4j.api.GitLabApiException;
 import org.gitlab4j.api.ProjectApi;
+import org.gitlab4j.api.ProjectLicense;
+import org.gitlab4j.api.models.LicenseTemplate;
 import org.gitlab4j.api.models.Project;
 import org.gitlab4j.api.models.User;
 import org.gitlab4j.api.models.Visibility;
+
+import java.util.List;
 
 public class GitLab {
 
@@ -145,7 +146,7 @@ public class GitLab {
 	/**
 	 * Deletes a GitLab repository
 	 * 
-	 * @param projectName The name for the GitLab repository.
+	 * @param prjName The name for the GitLab repository.
 	 * 
 	 */
 	public void deleteProject(String prjName) throws GitLabApiException {
@@ -191,9 +192,11 @@ public class GitLab {
 			visibility = Visibility.PRIVATE;
 			break;
 		}
+
 		projectSpec = new Project().withName(prjName).withVisibility(visibility)
 				.withDescription(projDescription).withIssuesEnabled(true)
-				.withMergeRequestsEnabled(true).withWikiEnabled(true).withSnippetsEnabled(true);
+				.withMergeRequestsEnabled(true).withWikiEnabled(true).withSnippetsEnabled(true)
+				.withInitializeWithReadme(true);
 
 		return projectSpec;
 	}

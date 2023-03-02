@@ -7,16 +7,24 @@
  * 
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
-package uom.smartclide.structurecreation;
+package org.eclipse.opensmartclide.servicecreation.functionality.utils;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+public class ResultObject {
+	int status;
+	String message;
 
-@SpringBootApplication
-public class ServiceCreationApplication {
+	public ResultObject(int status, String message) {
+		super();
+		this.status = status;
+		this.message = message;
+	}
 	
-	public static void main(String[] args) {
-		SpringApplication.run(ServiceCreationApplication.class, args);
+	public int getStatus() {
+		return status;
 	}
 
+	public String getMessage() {
+		return message;
+	}
+	
 }

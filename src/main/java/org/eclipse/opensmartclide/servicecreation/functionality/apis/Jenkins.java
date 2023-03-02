@@ -7,7 +7,7 @@
  * 
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
-package uom.smartclide.structurecreation.functionality.apis;
+package org.eclipse.opensmartclide.servicecreation.functionality.apis;
 
 import java.io.IOException;
 import java.net.URI;
@@ -20,7 +20,7 @@ import org.dom4j.DocumentException;
 import com.offbytwo.jenkins.JenkinsServer;
 import com.offbytwo.jenkins.model.Job;
 
-import uom.smartclide.structurecreation.functionality.utils.PipelineConfigXML;
+import org.eclipse.opensmartclide.servicecreation.functionality.utils.PipelineConfigXML;
 
 public class Jenkins {
 	
