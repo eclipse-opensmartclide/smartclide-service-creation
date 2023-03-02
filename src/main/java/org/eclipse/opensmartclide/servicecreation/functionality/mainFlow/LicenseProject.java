@@ -3,6 +3,7 @@ package org.eclipse.opensmartclide.servicecreation.functionality.mainFlow;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
+import org.springframework.util.FileSystemUtils;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -28,6 +29,11 @@ public class LicenseProject {
         folderName = "/" + projectName +"."+ System.currentTimeMillis();
     }
 
+    /**
+     * Creates the licence, writes the content, and commits
+     * @throws IOException
+     * @throws GitAPIException
+     */
     public void createLicenseFile() throws IOException, GitAPIException {
         File fileLicense = new File(folderName + "/LICENSE");
         if (fileLicense.createNewFile()) {
@@ -40,6 +46,11 @@ public class LicenseProject {
         }
     }
 
+    /**
+     * Commits and pushes
+     * @throws IOException
+     * @throws GitAPIException
+     */
     public void commitAndPush() throws IOException, GitAPIException {
         gitRepo.add().addFilepattern(".").call();
         gitRepo.commit().setNoVerify(true).setMessage("Add LICENSE").call();
@@ -48,6 +59,10 @@ public class LicenseProject {
                 .call();
     }
 
+    /**
+     * Clones repo locally
+     * @throws GitAPIException
+     */
     public void cloneRepository() throws GitAPIException {
         gitRepo = Git.cloneRepository()
                     .setURI(gitRepoURL)
@@ -56,4 +71,10 @@ public class LicenseProject {
                     .call();
     }
 
+    /**
+     * Deletes cloned folder
+     */
+    public void deleteFolder() {
+        FileSystemUtils.deleteRecursively(new File(folderName));
+    }
 }

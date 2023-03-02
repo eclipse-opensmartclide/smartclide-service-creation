@@ -11,14 +11,16 @@ public class LicenseFlow {
     public static HashMap<String,String> licensesMap;
 
     public static void addLicense(String gitlabToken, String gitRepoURL, String projectName, String license) {
-        LicenseProject licenseProject =new LicenseProject(gitlabToken,gitRepoURL,projectName,license);
-        try {
-            licenseProject.cloneRepository();
-            if(licensesMap.get(license) != null) {
+        //if given license exists start flow
+        if (licensesMap.get(license) != null) {
+            LicenseProject licenseProject = new LicenseProject(gitlabToken, gitRepoURL, projectName, license);
+            try {
+                licenseProject.cloneRepository();
                 licenseProject.createLicenseFile();
+            } catch (GitAPIException | IOException e) {
+                throw new RuntimeException(e);
             }
-        } catch (GitAPIException | IOException e) {
-            throw new RuntimeException(e);
+            licenseProject.deleteFolder();
         }
     }
 

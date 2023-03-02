@@ -66,6 +66,7 @@ public class EndpointController {
 		ResultObject ret = new ResultObject(1, "Creation Failed");
 		ret = MainFlow.createStructure(projectName, projVisibility, projDescription, gitLabServerURL, gitlabToken);
 
+		//if successful then add license if provided
 		if(!isEmptyOrNull(license) && ret.getStatus()==0){
 			System.out.println("Project created");
 			LicenseFlow.addLicense(gitlabToken, ret.getMessage(), projectName, license);
